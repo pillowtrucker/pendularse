@@ -1,0 +1,15 @@
+[package]
+name = "pendularse_macros"
+version = "0.1.0"
+authors = ["pillowtrucker"]
+description = "A `cargo generate` template for quick-starting a procedural macro crate"
+keywords = ["template", "proc_macro", "procmacro"]
+edition = "2021"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1"
+proc-macro2 = "1"
+syn = {version = "2", features = ["full"]}

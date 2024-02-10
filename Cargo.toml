@@ -1,0 +1,24 @@
+[package]
+name = "pendularse"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+nannou = {version = "0.19", git = "https://github.com/nannou-org/nannou"}
+thiserror = "1"
+anyhow = "1"
+clap = {version = "4.4", features = ["derive"]}
+ode_solvers = "0.4"
+enum_dispatch = "0.3"
+pendularse_macros = {path = "./pendularse_macros"}
+into_variant = "0.3"
+[profile.dev]
+opt-level = 0
+[profile.dev.package."pendularse_macros"]
+opt-level = 0
+[profile.dev.package."*"]
+opt-level = 1
+[workspace]
+members = ["pendularse_macros"]
