@@ -1,0 +1,2 @@
+edition = "2021"
+ignore = ["brainworms_farting_noises/libymfm.wasm"]
