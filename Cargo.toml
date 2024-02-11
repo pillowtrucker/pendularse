@@ -12,7 +12,7 @@ anyhow = "1"
 clap = {version = "4.4", features = ["derive"]}
 ode_solvers = "0.4"
 enum_dispatch = "0.3"
-pendularse_macros = {path = "./pendularse_macros"}
+#pendularse_macros = {path = "./pendularse_macros"}
 into_variant = "0.3"
 [profile.dev]
 opt-level = 0
@@ -20,5 +20,5 @@ opt-level = 0
 opt-level = 0
 [profile.dev.package."*"]
 opt-level = 1
-[workspace]
-members = ["pendularse_macros"]
+#[workspace]
+#members = ["pendularse_macros"]
