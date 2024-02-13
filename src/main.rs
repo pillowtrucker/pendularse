@@ -1,8 +1,13 @@
 mod drpa;
+mod drpn;
+mod nrpn;
 mod srpa;
 
+use std::f32::consts::PI;
+pub const pxpm: f32 = 1000.;
 use clap::Parser;
-
+pub type Time = f32;
+pub const Π: f32 = PI;
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
@@ -25,9 +30,13 @@ fn main() {
         1 => {
             nannou::app(drpa::model).update(drpa::update).run();
         }
+        3 => {
+            nannou::app(drpn::model).update(drpn::update).run();
+        }
         _ => {}
     };
 }
+
 /*
 struct Model {
     _window: window::Id,

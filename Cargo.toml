@@ -11,7 +11,7 @@ thiserror = "1"
 anyhow = "1"
 clap = {version = "4.4", features = ["derive"]}
 ode_solvers = "0.4"
-enum_dispatch = "0.3"
+#enum_dispatch = "0.3"
 #pendularse_macros = {path = "./pendularse_macros"}
 into_variant = "0.3"
 [profile.dev]

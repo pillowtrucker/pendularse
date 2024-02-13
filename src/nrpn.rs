@@ -29,7 +29,7 @@ impl Default for PendulumSystem {
     }
 }
 #[derive(Debug)]
-pub(crate) struct SingleRigidPendulumAnal {
+pub(crate) struct NRigidPendulumNaive {
     pub(crate) window: Option<window::Id>,
     pub(crate) pendulum_system: PendulumSystem,
     pub(crate) pendulum_state: PendulumState,
@@ -40,18 +40,18 @@ impl System<Time, PendulumState> for &PendulumSystem {
         *ω_mut(dy) = -(self.g / self.r) * θ(y).sin()
     }
 }
-pub(crate) fn model(app: &App) -> SingleRigidPendulumAnal {
+pub(crate) fn model(app: &App) -> NRigidPendulumNaive {
     let window = app.new_window().view(view).event(window_event).build().ok();
     let pendulum_state = Vector2::new(Π / 2., 0.);
     let pendulum_system = Default::default();
-    SingleRigidPendulumAnal {
+    NRigidPendulumNaive {
         window,
         pendulum_state,
         pendulum_system,
     }
 }
 
-pub(crate) fn update(_app: &App, model: &mut SingleRigidPendulumAnal, update: Update) {
+pub(crate) fn update(_app: &App, model: &mut NRigidPendulumNaive, update: Update) {
     let mut stepper = Rk4::new(
         &model.pendulum_system,
         (update.since_start - update.since_last).as_secs_f32(),
@@ -66,7 +66,7 @@ pub(crate) fn update(_app: &App, model: &mut SingleRigidPendulumAnal, update: Up
     *ω_mut(&mut model.pendulum_state) = ω(res);
 }
 
-pub(crate) fn view(app: &App, model: &SingleRigidPendulumAnal, frame: Frame) {
+pub(crate) fn view(app: &App, model: &NRigidPendulumNaive, frame: Frame) {
     let draw = app.draw();
     let start = frame.rect().mid_top();
     let end = start + vec2(0., -model.pendulum_system.r * pxpm).rotate(θ(&model.pendulum_state));
@@ -77,7 +77,7 @@ pub(crate) fn view(app: &App, model: &SingleRigidPendulumAnal, frame: Frame) {
     draw.ellipse().xy(end).color(STEELBLUE);
     draw.to_frame(app, &frame).unwrap();
 }
-pub(crate) fn window_event(app: &App, model: &mut SingleRigidPendulumAnal, event: WindowEvent) {
+pub(crate) fn window_event(app: &App, model: &mut NRigidPendulumNaive, event: WindowEvent) {
     match event {
         KeyPressed(_key) => {}
         KeyReleased(_key) => {}
