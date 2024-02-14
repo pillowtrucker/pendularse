@@ -57,7 +57,7 @@ pub(crate) fn update(_app: &App, model: &mut SingleRigidPendulumAnal, update: Up
         (update.since_start - update.since_last).as_secs_f32(),
         model.pendulum_state,
         update.since_start.as_secs_f32(),
-        update.since_last.as_secs_f32(),
+        0.001, //update.since_last.as_secs_f32(),
     );
     let Ok(_) = stepper.integrate() else { return };
     let (_, y_out) = stepper.results().get();
