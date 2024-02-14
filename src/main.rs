@@ -1,10 +1,12 @@
 mod drpa;
 mod drpn;
+mod msrpa;
 mod nrpn;
 mod srpa;
+mod sspa;
 
 use std::f32::consts::PI;
-pub const pxpm: f32 = 1000.;
+pub const pxpm: f32 = 100.;
 use clap::Parser;
 pub type Time = f32;
 pub const Π: f32 = PI;
@@ -32,6 +34,12 @@ fn main() {
         }
         3 => {
             nannou::app(drpn::model).update(drpn::update).run();
+        }
+        5 => {
+            nannou::app(msrpa::model).update(msrpa::update).run();
+        }
+        6 => {
+            nannou::app(sspa::model).update(sspa::update).run();
         }
         _ => {}
     };
