@@ -86,10 +86,10 @@ impl System<Time, PendulumState> for &PendulumSystem {
         *anchor_x_mut(dy) = anchor_vx(y);
 
         *anchor_vx_mut(dy) = -self.anchor_damping * anchor_vx(y)
-            + self.mouse_stiffy * (self.mouse_poz.x - anchor_x(y)) / (pxpm * 0.1);
+            + self.mouse_stiffy * (self.mouse_poz.x - anchor_x(y));
         *anchor_y_mut(dy) = anchor_vy(y);
         *anchor_vy_mut(dy) = -self.anchor_damping * anchor_vy(y)
-            + self.mouse_stiffy * (self.mouse_poz.y - anchor_y(y)) / (pxpm * 0.1);
+            + self.mouse_stiffy * (self.mouse_poz.y - anchor_y(y));
     }
 
     fn solout(&mut self, _x: Time, y: &PendulumState, dy: &PendulumState) -> bool {
